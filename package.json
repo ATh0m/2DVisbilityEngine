@@ -1,0 +1,13 @@
+{
+  "name": "2d_visibility_engine",
+  "version": "1.0.0",
+  "description": "2D Visibility Engine",
+  "scripts": {
+    "start": "harp server --port 8080 example/"
+  },
+  "dependencies": {
+      "harp": "latest"
+  },
+  "author": "Tomasz Nanowski (tomasz.nanowski@gmail.com)",
+  "license": "GPL-3.0"
+}
