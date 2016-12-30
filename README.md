@@ -1,1 +1,1 @@
-![][images/screen.jpeg]
+![](images/screen.jpeg)
