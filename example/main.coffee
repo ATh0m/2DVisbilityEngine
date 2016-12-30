@@ -54,6 +54,9 @@ segments = [
         a: x: 400, y: 100
         b: x: 400, y: 150
     ,
+        a: x: 400, y: 150
+        b: x: 439, y: 190
+    ,
         a: x: 400, y: 200
         b: x: 400, y: 250
     ,
@@ -98,7 +101,7 @@ draw = ->
         context.lineTo segment.b.x, segment.b.y
         context.stroke()
 
-    # Zaznaczenie kursora
+    # Rysowanie kropki pod kursorem
     context.fillStyle = '#dd3838'
     context.beginPath()
     context.arc mouse.x, mouse.y, 4, 0, Math.PI*2, false
