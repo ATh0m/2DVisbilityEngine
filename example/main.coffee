@@ -80,6 +80,11 @@ segments = [
 canvas = document.getElementById 'canvas'
 context = canvas.getContext '2d'
 
+# Kursor myszy
+mouse =
+    x: canvas.width / 2
+    y: canvas.height / 2
+
 # Funkcja rysująca
 draw = ->
     # Czyszczenie canvas
@@ -93,8 +98,20 @@ draw = ->
         context.lineTo segment.b.x, segment.b.y
         context.stroke()
 
+    # Zaznaczenie kursora
+    context.fillStyle = '#dd3838'
+    context.beginPath()
+    context.arc mouse.x, mouse.y, 4, 0, Math.PI*2, false
+    context.fill()
+
 # Zmienna, która dba o to, żeby widok aktualizował się tylko gdy jest to potrzebne
 updateCanvas = true
+
+# Śledzenie ruchów myszy
+canvas.onmousemove = (event) ->
+    mouse.x = event.clientX - canvas.getBoundingClientRect().left
+    mouse.y = event.clientY - canvas.getBoundingClientRect().top
+    updateCanvas = true
 
 # Główna pętla do aktualizacji widoku
 drawLoop = ->
