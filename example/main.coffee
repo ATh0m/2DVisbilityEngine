@@ -94,12 +94,24 @@ draw = ->
     context.clearRect 0, 0, canvas.width, canvas.height
 
     # Rysowanie odcinków
-    context.strokeStyle = '#000'
+    context.strokeStyle = '#8b8989'
     for segment in segments
         context.beginPath()
         context.moveTo segment.a.x, segment.a.y
         context.lineTo segment.b.x, segment.b.y
         context.stroke()
+
+    # Znajdowanie widzianego obszaru z punktem obserwacyjnym wyznaczanym poprzez
+    # kursor myszy
+    polygon = getSightPolygon mouse, segments
+
+    # Rysowanie widzialnego obszaru
+    context.fillStyle = '#fff'
+    context.beginPath()
+    context.moveTo polygon[0].x, polygon[0].y
+    for intersect in polygon
+        context.lineTo intersect.x, intersect.y
+    context.fill()
 
     # Rysowanie kropki pod kursorem
     context.fillStyle = '#dd3838'

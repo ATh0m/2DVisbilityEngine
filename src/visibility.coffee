@@ -80,8 +80,8 @@ getSightPolygon = (sight, segments) ->
 
         # Zdefiniowanie prostej
         ray =
-            a: x: sightX, y: sightY
-            b: x: sightX + dx, y: sightY + dy
+            a: x: sight.x, y: sight.y
+            b: x: sight.x + dx, y: sight.y + dy
 
         # Najbliższe przecięcie
         closestIntersect = undefined
