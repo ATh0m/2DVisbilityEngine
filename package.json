@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "2D Visibility Engine",
   "scripts": {
-    "build": "coffee -c -o example/ src/",
-    "start": "harp server --port 8080 example/"
+    "start": "cp -f src/* example/ && harp server --port 8080 example/"
   },
   "dependencies": {
       "harp": "latest",
