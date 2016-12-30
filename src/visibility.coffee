@@ -5,8 +5,35 @@
 #
 # @param [Segment] ray - pierwszy odcinek
 # @param [Segment] segment - drugi odcinek
+#
+# Można to zrobić w prosty sposób poprzez wyznaczenie każdemu odcinkowi jego
+# prostą i w ten sposób znalezienie punktu przecięcia z uwzględnieniem
+# odpowiednich warunków (czy punkt należy do odcinków)
 getIntersection = (ray, segment) ->
-    undefined
+    r_px = ray.a.x
+    r_py = ray.a.y
+    r_dx = ray.b.x - ray.a.x
+    r_dy = ray.b.y - ray.a.y
+
+    s_px = segment.a.x
+    s_py = segment.a.y
+    s_dx = segment.b.x - segment.a.x
+    s_dy = segment.b.y - segment.a.y
+
+    r_mag = Math.sqrt r_dx * r_dx + r_dy * r_dy
+    s_mag = Math.sqrt s_dx * s_dx + s_dy * s_dy
+
+    # Jeśli proste są równoległe to nie istnieje punkt przecięcia
+    if r_dx / r_mag is s_dx / s_mag and r_dy / r_mag is s_dy / s_mag
+        return null
+
+    T2 = (r_dx * (s_py - r_py) + r_dy * (r_px - s_px)) / (s_dx * r_dy - s_dy * r_dx)
+    T1 = (s_px + s_dx * T2 - r_px) / r_dx
+
+    return null if T1 < 0
+    return null if T2 < 0 or T2 > 1
+
+    return x: r_px + r_dx * T1, y: r_py + r_dy * T1, param: T1
 
 # Znajduje wielokąt opisujący widziany obszar
 #
